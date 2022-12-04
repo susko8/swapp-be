@@ -1,0 +1,43 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+   http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet author="Samuel" id="1.0.0">
+        <createTable tableName="invoice">
+            <column name="id" type="INT(64)" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="amount" type="numeric(64,2)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="Samuel" id="1.0.1">
+        <insert tableName="invoice">
+            <column name="name">Samuel</column>
+            <column name="amount">15.5</column>
+        </insert>
+        <insert tableName="invoice">
+            <column name="name">Joseph</column>
+            <column name="amount">12</column>
+        </insert>
+        <insert tableName="invoice">
+            <column name="name">Peter</column>
+            <column name="amount">14</column>
+        </insert>
+        <insert tableName="invoice">
+            <column name="name">Jan</column>
+            <column name="amount">21</column>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>
