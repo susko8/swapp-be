@@ -1,0 +1,28 @@
+version: "3.7"
+services:
+  swapp-be:
+    build:
+      context: .
+    image: maven/builder:0.0.1
+    container_name: swapp-be
+    ports:
+      - "8080:8080"
+    volumes:
+      - "./src:/build/src"
+      - "./target:/build/target:cached"
+    command: "mvn spring-boot:run -Dspring-boot.run.profiles=docker"
+    depends_on:
+      - swapp_db
+  swapp_db:
+    container_name: swapp_db
+    image: "postgres:14-alpine3.14"
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=swapp
+      - POSTGRES_PASSWORD=swapp
+      - POSTGRES_DB=swapp
+    volumes:
+      - swapp_db:/var/lib/postgresql/data
+volumes:
+  swapp_db: {}
