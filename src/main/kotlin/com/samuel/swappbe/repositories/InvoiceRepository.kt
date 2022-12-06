@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface InvoiceRepository : JpaRepository<Invoice, Long> {
+    fun findAllByIdIn(ids: List<Long>): MutableList<Invoice>
 }
